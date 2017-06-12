@@ -1,28 +1,113 @@
 # Vue.js入门
 
 ## 自我介绍
-
-
+2016年加入去哪儿网，目前机票事业部前端开发工程师一枚，欢迎交流。
 ## 主要内容 
 * Vue.js介绍
 * Vue.js基础语法
 * 数据驱动 数据的双向绑定
 * 模块化 组件化
-
+* Vue.js的生命周期
+* Vue.js的技术栈
 ## Vue.js介绍
-
-Vue.js是当下很火的一个JavaScript MVVM库，其作者是Evan You（尤雨溪）。
-Vue.js是以数据驱动和组件化的思想构建的。
-![作者](https://github.com/RQAccount/my-vue-demo/images/author.jpg) Evan You（尤雨溪）
-
+Vue.js是当下很火的一个JavaScript MVVM库，它是以数据驱动和组件化的思想构建的。  
+Vue.js的作者是Evan You（尤雨溪），任职于Google Creative Lab。
+![Evan You（尤雨溪）](images/author.jpg) 
+### 回顾MVX模式
 在正式进入Vue.js之前，我们先和大家简单回顾一下MVC、MVP和MVVM模式。
+#### MVC模式
+MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 —— 一种将业务逻辑、数据、界面显示分离的方法组织代码的模式。这主要是基于分层的目的，让彼此的职责分开，降低耦合度，便于后期维护。
+
+![mvc模型](images/mvc.jpg) 
+
+从图可以看到，视图(V)通过控制器(C)和模型(M)进行联系。控制器(C)是模型(M)和视图(V)的协调者，视图(V)和模型(M)不直接联系（View会直接从Model中读取数据）。 基本关系都是单向的。那么，用户操作应该放在什么位置，MVC之间又会发生什么变化呢？
+
+![带user的mvc模型](images/mvc2.jpg)
+
+用户(User)通过控制器(Controller)来操作模型(Model)来达到视图(View)的变化
+
+#### MVP模式
+MVP是从经典的MVC模式演变而来的，他们的思想有相同的地方：Controller/Presenter负责逻辑处理，Model提供数据，View负责显示。
+
+![mvp模型](images/mvp.jpg) 
+
+在MVP中，Presenter完全把View和Model 进行了分离，主要的程序逻辑在Presenter里实现。而且，Presenter与具体的View没有直接关联，而是通过定义好的接口进行交互，从而使得在变更View的时候可以保持Presenter不变。
+
+MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会直接从Model中读取数据而不是通过 Controller。
+#### MVVM模式
+MVVM代表的框架： Knockout、Ember.js 和目前火热来之Google的AgularJS、我们公司司徒正美的Avalon,以及我们今天要讲的Vue.js
+
+相比前两种模式，MVVM只是把MVC中的C和MVP中的P改成了VM。这点有什么变化呢？
+
+![mvvm模型](images/mvvm.jpg) 
+
+### 与其他技术比较
+xxx
+
+#### 与AngularJS的区别
+#### 与React的区别
+#### 与Backbone.js的区别
+
+## Vue.js核心特点
+* MVVM模式
+* 数据驱动 数据双向绑定
+* 模块化 组件化
+
+## 基础语法
+了解一门语言或者学习一门新技术，编写Hello World示例是我们的必经之路。 
+首先我们在一个html文件中，直接通过script标签引入Vue.js，然后在页面里写Vue.js代码的方式来演示Vue.js的基础语法。 
+
+![helloWorld](images/helloWorld.jpg)
+
+使用Vue的过程就是定义MVVM各个组成部分的过程的过程，即定义模板（View），定义数据（Model）和定义Vue实例（ViewModel），ViewModel选项对象的el属性执行View，data指向Model。
+
+这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
+### 数据绑定
+ Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外Vue.js中还可使用表达式和指令，下面我们看看这个栗子。
+
+ ![数据绑定](images/dataBinding.jpg)
 
 
-### MVC模式
+### 指令
+数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
 
-MVC模式
+![内置指令](images/directive.jpg)
 
+### 计算属性
+什么是计算属性？当其依赖属性的值发生改变时，这个属性的值会自动更新，与之相关的DOM部分也会同步更新。
+计算属性：与方法不同，它们不接受任何参数，但它们具有对现有状态的访问权限。 它们是为了执行性能和跟踪/缓存它们自己的依赖而建立的，因此它们非常适合于从您的状态创建派生数据。
 
-### MVP模式
+方法：与计算属性不同，方法可以接受参数，但是，该方法将不会跟踪其依赖关系或缓存传递给它的任何数据。
+### 过滤器
 
-### MVVM模式
+过滤器的本质是函数，起作用在于用户输入数据后，它能够进行处理，并返回一个数据结果。
+
+![内置过滤器](images/filter.jpg)
+
+### 样式&过渡
+
+## 数据驱动&数据双向绑定
+
+## 模块化&组件化
+
+## Vue.js的生命周期
+![生命周期](images/lifeCycle.jpg)
+
+## Vue.js技术栈
+以上我们讲到可以直接在一个html页面里通过引入Vue.js来直接写Vue代码，但是这样的方式并不常用。因为如果我们的项目比较大，项目中会存在很多页面，一旦每个页面都引入一个Vue.js或者声明一个Vue实例，这样非常不利于后期的维护和代码的公用，也会存在实例名冲突的情况，所以我们需要用到Vue提供的技术栈来构建强大的前端项目。
+
+![技术栈](images/technologyStack.jpg)
+
+使用脚手架搭建工程步骤
+
+![脚手架](images/vue-cli.jpg)
+
+## 为什么分享/使用 Vue.js ?
+
+1.学习成本不高，API简单让业务代码更好的组织    
+    
+    template + 数据双向绑定 + 组件  
+2.解决了前端交互复杂带来的性能问题  
+3.完整的开发生态链
+从脚手架、构建、插件化、组件化，到编辑器工具、浏览器插件等，基本覆盖了从开发到测试的多个环节。
+## 总结
