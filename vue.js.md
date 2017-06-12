@@ -45,8 +45,22 @@ MVVM代表的框架： Knockout、Ember.js 和目前火热来之Google的AgularJ
 xxx
 
 #### 与AngularJS的区别
+同：均支持指令、过滤器、双向绑定，不支持低版本浏览器（IE6/7/8）  
+异：  
+	1.AngularJS学习成本高，Vue的API简单直观  
+	2.数据双向绑定实现方式不同，在性能上得到了很大的优化    
+AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。而vue.js使用的是基于依赖追踪的观察并且使用异步队列更新，所有的数据都是独立触发。对于庞大的应用来说，这个优化差异还是很明显的。
 #### 与React的区别
+同：  
+    1.均采用特殊的JSX语法，vue.js在组件开发中也推崇编写.vue特殊文件格式，对文件内容都有一些规定，两者都需要编译后使用。  
+	2.中心思想相同：一切都是组件，组件之间可以嵌套。  
+	3.都提供合理的钩子函数，可以让开发者定制化地处理需求  
+	4.都不内置类似Ajax,router等功能的核心包，而是以插件的方式加载  
+异：  
+	1.React依赖 虚拟Dom, 而Vue.js使用的是DOM模板（vue.js 2.0也支持了虚拟DOM，但两者是有差异的）  
+	2.Vue.js在模板中提供指令、过滤器等，可以更翻遍快捷地操作DOM
 #### 与Backbone.js的区别
+定位不同，Vue.js专注于View,而Backbone除view之外，还提供Collection、model和Router。Vue.js拥有数据双向绑定，而Backbone需要手动通过事件来操作DOM。
 
 ## Vue.js核心特点
 * MVVM模式
@@ -63,15 +77,24 @@ xxx
 
 这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
 ### 数据绑定
- Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外Vue.js中还可使用表达式和指令，下面我们看看这个栗子。
-
+ Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外，Vue.js中还可使用指令和表达式，下面我们看看这个栗子。
  ![数据绑定](images/dataBinding.jpg)
 
+ 运行页面结果：
+
+ ![数据绑定运行页面结果](images/dataBindingResult.jpg)
 
 ### 指令
 数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
 
 ![内置指令](images/directive.jpg)
+
+![todoList栗子](images/todoList.jpg)
+
+运行页面结果：
+
+![todoList运行结果](images/todoListResult.jpg)
+
 
 ### 计算属性
 什么是计算属性？当其依赖属性的值发生改变时，这个属性的值会自动更新，与之相关的DOM部分也会同步更新。
@@ -85,11 +108,16 @@ xxx
 ![内置过滤器](images/filter.jpg)
 
 ### 样式&过渡
+![class](images/class.jpg)
+
+![style](images/style.jpg)
 
 ## 数据驱动&数据双向绑定
+![数据驱动](images/dataDriven.jpg)
 
+![数据响应](images/dataResponsePrinciple.jpg)
 ## 模块化&组件化
-
+![模块化&组件化](images/modular.jpg)
 ## Vue.js的生命周期
 ![生命周期](images/lifeCycle.jpg)
 
@@ -107,7 +135,7 @@ xxx
 1.学习成本不高，API简单让业务代码更好的组织    
     
     template + 数据双向绑定 + 组件  
-2.解决了前端交互复杂带来的性能问题  
+2.解决了前端交互复杂带来的性能问题 
 3.完整的开发生态链
 从脚手架、构建、插件化、组件化，到编辑器工具、浏览器插件等，基本覆盖了从开发到测试的多个环节。
 ## 总结
