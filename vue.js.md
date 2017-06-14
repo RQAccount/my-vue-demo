@@ -20,11 +20,11 @@ MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 
 
 ![mvc模型](images/mvc.jpg) 
 
-从图可以看到，视图(V)通过控制器(C)和模型(M)进行联系。控制器(C)是模型(M)和视图(V)的协调者，视图(V)和模型(M)不直接联系（View会直接从Model中读取数据）。 基本关系都是单向的。那么，用户操作应该放在什么位置，MVC之间又会发生什么变化呢？
+从图可以看到，视图(V)通过控制器(C)和模型(M)进行联系。控制器(C)是模型(M)和视图(V)的协调者，视图(V)和模型(M)不直接联系（View会直接从Model中读取数据）。那么，用户操作应该放在什么位置，MVC之间又会发生什么变化呢？
 
 ![带user的mvc模型](images/mvc2.jpg)
 
-用户(User)通过控制器(Controller)来操作模型(Model)来达到视图(View)的变化
+用户(User)通过控制器(Controller)来操作模型(Model)来达到视图(View)的变化。
 
 #### MVP模式
 MVP是从经典的MVC模式演变而来的，他们的思想有相同的地方：Controller/Presenter负责逻辑处理，Model提供数据，View负责显示。
@@ -35,15 +35,15 @@ MVP是从经典的MVC模式演变而来的，他们的思想有相同的地方�
 
 MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会直接从Model中读取数据而不是通过 Controller。
 #### MVVM模式
-MVVM代表的框架： Knockout、Ember.js 和目前火热来之Google的AgularJS、我们公司司徒正美的Avalon,以及我们今天要讲的Vue.js
+MVVM代表的框架： 早期的Knockout、Ember.js 和目前火热来之Google的AgularJS、司徒正美的Avalon，以及我们今天要讲的Vue.js。
 
 相比前两种模式，MVVM只是把MVC中的C和MVP中的P改成了VM。这点有什么变化呢？
 
 ![mvvm模型](images/mvvm.jpg) 
 
-### 与其他技术比较
-xxx
+ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
 
+### 与其他技术比较
 #### 与AngularJS的区别
 同：均支持指令、过滤器、双向绑定，不支持低版本浏览器（IE6/7/8）  
 异：  
@@ -95,7 +95,6 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 
 ![todoList运行结果](images/todoListResult.jpg)
 
-
 ### 计算属性
 什么是计算属性？当其依赖属性的值发生改变时，这个属性的值会自动更新，与之相关的DOM部分也会同步更新。
 计算属性：与方法不同，它们不接受任何参数，但它们具有对现有状态的访问权限。 它们是为了执行性能和跟踪/缓存它们自己的依赖而建立的，因此它们非常适合于从您的状态创建派生数据。
@@ -115,10 +114,47 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 ## 数据驱动&数据双向绑定
 ![数据驱动](images/dataDriven.jpg)
 
+ViewModel是Vue.js的核心，它是一个Vue实例。Vue实例是作用于某一个HTML元素上的，这个元素可以是HTML的body元素，也可以是指定了id的某个元素。
+
+当创建了ViewModel后，双向绑定是如何达成的呢？
+
+首先，我们将上图中的DOM Listeners和Data Bindings看作两个工具(View层（即DOM层）与Model层（即JS逻辑层）之间通过ViewModel绑定了DOM Listeners与Data Bindings两个相当于监听器的东西)，它们是实现双向绑定的关键。
+从View侧看，ViewModel中的DOM Listeners工具会帮我们监测页面上DOM元素的变化，如果有变化，则更改Model中的数据；
+从Model侧看，当我们更新Model中的数据时，Data Bindings工具（指令）会帮我们更新页面中的DOM元素。
+
+这样便实现了一个双向数据绑定的功能，也是Vue.js数据驱动的原理所在。
+
 ![数据响应](images/dataResponsePrinciple.jpg)
+
+Vue.js将普通的对象的属性通过Object.defineProperty转换为ES5特性之一的 getter/setter，模板中每个指令/数据绑定都有一个对应的 watcher 对象。
+当修改对象值的时，首先会触发属性的setter，在setter被调用时，会触发 watcher 重新计算，也就会导致它的关联指令更新DOM。
+
 ## 模块化&组件化
+在大型的应用中，为了分工、复用和可维护性，我们不可避免地需要将应用抽象为多个相对独立的模块。在较为传统的开发模式中，我们只有在考虑复用时才会将某一部分做成组件；但实际上，应用类 UI 完全可以看作是全部由组件树构成的：
+
 ![模块化&组件化](images/modular.jpg)
+
+因此，在Vue.js的设计中将组件作为一个核心概念。可以说，每一个Vue.js应用都是围绕着组件来开发的。
+
+那么如何定义一个组件呢？
+![定义组件](images/component1.jpg)
+![定义组件](images/component2.jpg)
+
+从上面的栗子我们可以看到，注册组件：
+Vue.component('xxx-xxx',options);
+组件选项options包括:
+* 模板（template）
+* 初始数据（data）
+* 接受外部参数（props）
+* 方法（methods）
+* 生命周期钩子函数（created等）
+
+使用
+
+`<xxx-xxx></xxx-xxx>`
+
 ## Vue.js的生命周期
+
 ![生命周期](images/lifeCycle.jpg)
 
 ## Vue.js技术栈
@@ -139,3 +175,4 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 3.完整的开发生态链
 从脚手架、构建、插件化、组件化，到编辑器工具、浏览器插件等，基本覆盖了从开发到测试的多个环节。
 ## 总结
+以上我们从介绍了Vue.js的发展史，Vue.js与其他技术比较，基本语法，基本特征MVVM模型、数据双向绑定、模块化和组件化，以及构建一个强大的前端项目需要的技术栈。我们基本掌握了Vue.js的基础知识，了解了其基本特征，有兴趣的同学可以进一步的学习和探寻。
