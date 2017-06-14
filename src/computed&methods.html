@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性</title>
+    <style rel="stylesheet">
+    
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <input type="text" v-model="firstName">
+        <input type="text" v-model="lastName">
+        <br>
+        firstName={{firstName}},lastName={{lastName}},fullName={{fullName}}
+
+        <p>firstName={{firstName}},lastName={{lastName}},fullName=<span v-text="getFullName()"></span></p>
+    </div>
+</body>
+<script src="./lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            firstName: "Foo",
+            lastName: "Bar"
+        },
+        computed: {
+            fullName: function() {
+              return this.firstName + this.lastName;  
+            }
+        },
+        methods: {
+            getFullName() {
+                return this.firstName + this.lastName;
+            }
+        }
+    });
+</script>
+</html>

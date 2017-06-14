@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todolist Component</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div id="todoList">
+        <h1>my todoList 
+            <span v-show="remaining">({{remaining}})</span>
+        </h1>
+        <todo-list v-bind:list="lists"></todo-list>
+    </div>
+    <template id="todolist-tpl">
+        
+        <ul>
+            <li @click="toggleItem(item)"
+                :class="{'completed': item.completed}"
+                v-for="(item,index) in list">
+                {{item.text}} 
+                <strong @click="deleteItem(index)">X</strong>
+            </li>
+        </ul>
+    </template>
+</body>
+<script src="./lib/vue.js"></script>
+<script>
+    Vue.component('todo-list', {
+        template: '#todolist-tpl',
+        props: ['list'],
+        methods: {
+            toggleItem(item) {
+                item.completed = !item.completed;
+            },
+            deleteItem(index) {
+                this.list.splice(index, 1);
+            }
+        }
+    });
+    new Vue({
+        el: '#todoList',
+        data: {
+            lists: [
+                {text: 'go to the movie', completed: false},
+                {text: 'learn vue.js', completed: true},
+                {text: 'go to the shop', completed: false}
+            ]
+        },
+        computed: {
+            remaining() {
+                if(this.lists || this.lists.length > 0) {
+                    return this.lists.filter(function(item) {
+                        return !item.completed; 
+                    }).length;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    });
+</script>
+</html>

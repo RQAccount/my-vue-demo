@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todoList</title>
+    <style rel="stylesheet">
+        ul {
+            width: 300px;
+        }
+        li p{
+            display: inline-block;
+            width: 280px;
+            border: 1px solid gray;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        li span {
+            cursor:pointer
+         }
+        input, p{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="todoList">
+        <h1>todoList</h1>
+        <ul>
+            <li v-for="(list,index) in lists"><p>{{list.text}}</p> <span v-on:click="removeItem(index)">x</span></li>
+        </ul>
+        <p v-if="!show">{{msg}}</p>
+        <p v-show="!show">{{msg}}</p>
+        <input type="text" v-model='msg'/>
+        <button v-on:click="addItem">添加</button>
+    </div>
+</body>
+<script src="./lib/vue.js"></script>
+<script>
+    new Vue({
+        el: '#todoList',
+        data: {
+            show: false,
+            msg: '',
+            lists: [
+                {
+                    text: '111'
+                },
+                {
+                    text: '222'
+                },
+                {
+                    text: '333'
+                }
+            ]
+        },
+        methods: {
+            addItem() {
+                this.lists.push({
+                    text: this.msg
+                })
+                this.msg = '';
+            },
+            removeItem(index) {
+                this.lists.splice(index, 1);
+            }
+        }
+    });
+</script>
+</html>

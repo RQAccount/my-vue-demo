@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <style rel="stylesheet">
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <!--<input type="text" v-model="firstName">
+        <input type="text" v-model="lastName">
+        <p>firstName：{{firstName | capitalize}}</p>
+        <p>lastName：{{firstName | lowercase}}</p>-->
+        <input type="text" v-model="reason">
+        <p>{{reason | reverse}}</p>
+    </div>
+</body>
+<script src="./lib/vue.js"></script>
+<script>
+    Vue.filter('reverse',function(value) {
+        return value.split(' ').reverse().join(' ');
+    }); 
+
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            firstName: "Foo",
+            lastName: "Bar",
+            reason: "a b c d"
+        },
+        computed: {
+            fullName: function() {
+              return this.firstName + this.lastName;  
+            }
+        }
+    });
+</script>
+</html>

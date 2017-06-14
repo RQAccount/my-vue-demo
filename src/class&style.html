@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class&style</title>
+    <style rel="stylesheet">
+        .warning{
+            color:#f24;
+        }
+        .safe{
+            color:#42b983;
+        }
+    </style>
+</head>
+<body>
+    <div id="classBind">
+        <span :class="{warning:isWarning,safe:isSafe}" v-on:click="toggle">
+        状态:{{alert}}{{isSafe}}
+        </span>
+        <span :class="classObj" v-on:click="toggle">
+        状态:{{alert}}{{isSafe}}
+        </span>
+    </div>
+    <div id="styleBind">
+        <span :style="{color:theColor,fontSize:theSize+'px'}" 
+        @click="bigger">styleBind</span>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+        var app11=new Vue({
+            el:'#classBind',
+            data:{
+                isWarning:true,
+                alertList:['红色警报','警报解除'],
+                alert:''
+            },
+            computed:{
+                isSafe:function(){
+                    return !this.isWarning;
+                },
+                classObj:function(){
+                    return {
+                        warning: this.isWarning,
+                        safe:this.isSafe
+                    }
+                }
+            },
+            methods:{
+                toggle:function(){
+                    this.isWarning=!this.isWarning;
+                    this.alert= this.isWarning?this.alertList[0]:this.alertList[1];
+                }
+            }
+        });
+        var app12=new Vue({
+            el:'#styleBind',
+            data:{
+                theColor:'red',
+                theSize:14
+            },
+            methods:{
+                bigger:function(){
+                    this.theSize+=2;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

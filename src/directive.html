@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>vy
+</head>
+<body>
+    <div id="app" @click="up">
+      <div id="demo" v-demo:hello.a.b="msg"></div>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      Vue.directive('demo', {
+        bind: function() {
+          //准备工作
+          //例如，添加事件的处理器或只需要运行一次的高耗任务
+          console.log('demo bound');
+        },
+        update: function(el) {
+          //值更新工作
+          //也会以初始值为参数调用一次
+          el.innerHTML = 'vm-msg: : ' + this.vm.msg + '<br>'
+        },
+        unbind: function() {
+          //清理工作
+          //例如：删除bind（）添加的事件监听器
+        }
+      });
+
+      var vm = new Vue({
+          el: '#app',
+          data: {
+              msg: 'hello world!'
+          },
+          methods: {
+            up: function(){
+              console.log("click")
+            }
+          }
+      });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
