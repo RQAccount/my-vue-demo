@@ -194,7 +194,6 @@ Vue.js将普通的对象的属性通过Object.defineProperty转换为ES5特性�
 
 ![todoList组件运行结果](images/componentResult.jpg)
 
-
 从上面的栗子我们可以看到，注册组件：
 Vue.component('xxx-xxx',options);
 组件选项options包括:
@@ -226,7 +225,7 @@ Vue.component('xxx-xxx',options);
 1.学习成本不高，API简单让业务代码更好的组织    
     
     template + 数据双向绑定 + 组件  
-2.解决了前端交互复杂带来的性能问题 
+2.解决了前端交互复杂带来的性能问题  
 3.完整的开发生态链
 从脚手架、构建、插件化、组件化，到编辑器工具、浏览器插件等，基本覆盖了从开发到测试的多个环节。
 ## 总结
