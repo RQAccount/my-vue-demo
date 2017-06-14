@@ -88,6 +88,13 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
 
 ![内置指令](images/directive.jpg)
+* v-show / v-if   是否展示 (区别：v-show不展示时，是有Dom占位的，而v-if直接没有不显示的节点。)
+* v-text / v-html  显示普通文/HTML内容文本
+* v-model  表单绑定
+* v-bind  元素属性
+* v-for  循环（list列表）
+* v-on 事件（click等，click.stop 阻止时间冒泡） 
+* ...
 
 ![todoList栗子](images/todoList.jpg)
 
@@ -95,22 +102,65 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 
 ![todoList运行结果](images/todoListResult.jpg)
 
+自定义指令：
+
+![自定义指令](images/defineDirective.jpg)
+
+同Angular一样，Vue.js提供了几个钩子函数（都是可选的，相互之间没有制约关系）——bind  upadte unbind
+
+bind——只调用一次，在指令第一次绑定到元素上是调用
+update——在bind之后立即以初始值为参数第一次调用，之后每当绑定值变化时调用，参数为新值与旧值
+unbind——只调用一次，在指令从元素上解绑时调用
+
+注册之后，便可以在模板中这样用（记着添加前缀v-）
+
+![使用自定义指令](images/useDirective.jpg)
+
 ### 计算属性
 什么是计算属性？当其依赖属性的值发生改变时，这个属性的值会自动更新，与之相关的DOM部分也会同步更新。
+
+![computed](images/computed.jpg)
+
+data影响计算属性的数据，没有发生改变的时候，多次访问fullName都不会再重新执行计算的这个属性(依赖缓存)
+
+![methods](images/methods.jpg)
+
+methods也能实现（每次被重新渲染的时候都会被重新调用）
+
 计算属性：与方法不同，它们不接受任何参数，但它们具有对现有状态的访问权限。 它们是为了执行性能和跟踪/缓存它们自己的依赖而建立的，因此它们非常适合于从您的状态创建派生数据。
 
 方法：与计算属性不同，方法可以接受参数，但是，该方法将不会跟踪其依赖关系或缓存传递给它的任何数据。
 ### 过滤器
-
-过滤器的本质是函数，起作用在于用户输入数据后，它能够进行处理，并返回一个数据结果。
+Vue.js提供了一些内置的过滤器，用于数据过滤、筛选等。
 
 ![内置过滤器](images/filter.jpg)
 
+字母过滤器：
+* capitalize 首字母大写       
+* uppercase  字符中所有的字符大写             
+* lowercase  字符中所有的字符小写
+
+限制过滤器:
+* limitBy  限制数组为开始的前N个元素,其中N为传入的第一个参数指定。第二个参数（偏移量,从哪个元素开始）可选，默认为0
+* filterBy 限制比较灵活，参数可谓字符串或者函数
+* orderBy 返回排序后的数组，条件可是字符串、数组和函数
+
+json —— 打印格式处理  
+currency —— 数字转化未带货币符号形式  
+debounce —— 延迟处理器一定的时间执行
+
+可自定义过滤器：
+
+![defineFilter](images/defineFilter.jpg)
+
+从上图栗子可以看到自定义一个过滤器Vue.filter('', Fn),过滤器的本质是函数，起作用在于用户输入数据后，它能够进行处理，并返回一个数据结果。过滤器使用管道符（|）进行连接。
 ### 样式&过渡
+这块不知道咋讲，直接上栗子吧！
 ![class](images/class.jpg)
 
 ![style](images/style.jpg)
 
+过渡分为css过渡和JavaScript过渡，这里我就不讲了，有兴趣的同学可以自己下来看看！
 ## 数据驱动&数据双向绑定
 ![数据驱动](images/dataDriven.jpg)
 
@@ -139,6 +189,11 @@ Vue.js将普通的对象的属性通过Object.defineProperty转换为ES5特性�
 那么如何定义一个组件呢？
 ![定义组件](images/component1.jpg)
 ![定义组件](images/component2.jpg)
+
+运行结果
+
+![todoList组件运行结果](images/componentResult.jpg)
+
 
 从上面的栗子我们可以看到，注册组件：
 Vue.component('xxx-xxx',options);
