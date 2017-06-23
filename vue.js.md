@@ -1,7 +1,9 @@
 # Vue.js入门
 
 ## 自我介绍
+
 2016年加入去哪儿网，目前机票事业部前端开发工程师一枚，欢迎交流。
+
 ## 主要内容 
 * Vue.js介绍
 * Vue.js基础语法
@@ -9,7 +11,9 @@
 * 模块化 组件化
 * Vue.js的生命周期
 * Vue.js的技术栈
+
 ## Vue.js介绍
+
 Vue.js是当下很火的一个JavaScript MVVM库，它是以数据驱动和组件化的思想构建的。  
 Vue.js的作者是Evan You(尤雨溪)，任职于Google Creative Lab。
 
@@ -27,8 +31,11 @@ Vue.js各个版本发布的时间
 从0.7.0到0.10.0是一个造轮子的过程；从0.10.0到1.0.0历经一年多，是Vue.js的成长期；1.0.0到2.0是Vue.js学习了其他比较好的东西，例如虚拟DOM等，逐渐走向成熟。
 
 ### 回顾MVX模式
+
 在正式进入Vue.js之前，我们先和大家简单回顾一下MVC、MVP和MVVM模式。
+
 #### MVC模式
+
 MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 —— 一种将业务逻辑、数据、界面显示分离的方法组织代码的模式。这主要是基于分层的目的，让彼此的职责分开，降低耦合度，便于后期维护。
 
 ![mvc模型](images/mvc.jpg) 
@@ -40,6 +47,7 @@ MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 
 用户(User)通过控制器(Controller)来操作模型(Model)来达到视图(View)的变化。
 
 #### MVP模式
+
 MVP是从经典的MVC模式演变而来的，他们的思想有相同的地方：Controller/Presenter负责逻辑处理，Model提供数据，View负责显示。
 
 ![mvp模型](images/mvp.jpg) 
@@ -47,7 +55,9 @@ MVP是从经典的MVC模式演变而来的，他们的思想有相同的地方�
 在MVP中，Presenter完全把View和Model 进行了分离，主要的程序逻辑在Presenter里实现。而且，Presenter与具体的View没有直接关联，而是通过定义好的接口进行交互，从而使得在变更View的时候可以保持Presenter不变。
 
 MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会直接从Model中读取数据而不是通过 Controller。
+
 #### MVVM模式
+
 MVVM代表的框架： 早期的Knockout、Ember.js 和目前火热来之Google的AgularJS、司徒正美的Avalon，以及我们今天要讲的Vue.js。
 
 相比前两种模式，MVVM只是把MVC中的C和MVP中的P改成了VM。这点有什么变化呢？
@@ -57,6 +67,7 @@ MVVM代表的框架： 早期的Knockout、Ember.js 和目前火热来之Google�
 ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
 
 ### 与其他技术比较
+
 #### 与AngularJS的区别
 同：均支持指令、过滤器、双向绑定，不支持低版本浏览器（IE6/7/8）  
 异：  
