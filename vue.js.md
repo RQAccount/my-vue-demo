@@ -15,8 +15,8 @@
 ## Vue.js介绍
 
 Vue.js是当下很火的一个JavaScript MVVM库，它是以数据驱动和组件化的思想构建的。 
-
-Vue.js的作者是Evan You(尤雨溪)，
+ 
+Vue.js的作者 Evan You(尤雨溪)，任职于 Google Creative Lab。
 
 ![Evan You（尤雨溪）](images/author.jpg) 
 
