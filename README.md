@@ -65,7 +65,7 @@ MVVM代表的框架： 早期的Knockout、Ember.js 和目前火热来之Google�
 
 ![mvvm模型](images/mvvm.jpg) 
 
-ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
+ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
 
 ### 与其他技术比较
 
@@ -94,15 +94,15 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 
 ## 基础语法
 了解一门语言或者学习一门新技术，编写Hello World示例是我们的必经之路。 
-首先我们在一个html文件中，直接通过script标签引入Vue.js，然后在页面里写Vue.js代码的方式来演示Vue.js的基础语法。 
+首先我们在一个html文件中，直接通过script标签引入Vue.js，然后在页面里写Vue.js代码的方式来演示Vue.js的基础语法。 
 
 ![helloWorld](images/helloWorld.jpg)
 
 使用Vue的过程就是定义MVVM各个组成部分的过程的过程，即定义模板（View），定义数据（Model）和定义Vue实例（ViewModel），ViewModel选项对象的el属性执行View，data指向Model。
 
-这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
+这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
 ### 数据绑定
- Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外，Vue.js中还可使用指令和表达式，下面我们看看这个栗子。
+ Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外，Vue.js中还可使用指令和表达式，下面我们看看这个栗子。
  ![数据绑定](images/dataBinding.jpg)
 
  运行页面结果：
@@ -219,7 +219,7 @@ Vue.js将普通的对象的属性通过Object.defineProperty转换为ES5特性�
 
 ![todoList组件运行结果](images/componentResult.jpg)
 
-从上面的栗子我们可以看到，注册组件：
+从上面的栗子我们可以看到，注册组件：
 Vue.component('xxx-xxx',options);
 组件选项options包括:
 * 模板（template）
