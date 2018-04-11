@@ -31,13 +31,13 @@ Vue.js各个版本发布的时间
 
 从0.7.0到0.10.0是一个造轮子的过程；从0.10.0到1.0.0历经一年多，是Vue.js的成长期；1.0.0到2.0是Vue.js学习了其他比较好的东西，例如虚拟DOM等，逐渐走向成熟。
 
-### 回顾MVX模式
+### 回顾MVX模式
 
-在正式进入Vue.js之前，我们先和大家简单回顾一下MVC、MVP和MVVM模式。
+在正式进入Vue.js之前，我们先和大家简单回顾一下MVC、MVP和MVVM模式。
 
 #### MVC模式
 
-MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 —— 一种将业务逻辑、数据、界面显示分离的方法组织代码的模式。这主要是基于分层的目的，让彼此的职责分开，降低耦合度，便于后期维护。
+MVC即Model(模型)、view(视图)和Controller(控制器)的简称。MVC模型 —— 一种将业务逻辑、数据、界面显示分离的方法组织代码的模式。这主要是基于分层的目的，让彼此的职责分开，降低耦合度，便于后期维护。
 
 ![mvc模型](images/mvc.jpg) 
 
@@ -65,7 +65,7 @@ MVVM代表的框架： 早期的Knockout、Ember.js 和目前火热来之Google�
 
 ![mvvm模型](images/mvvm.jpg) 
 
-ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
+ViewModel的变化也会自动同步到View上显示，这就是传说中的数据双向绑定。说到数据的双向绑定，AngularJS也是有这个特性的。实际上它们量实现数据双向绑定是不一样的，AngularJS使用的是脏数据检测机制，而Vue.js是通过Object.defineProperty将普通对象转化为带ES5特性之一的getter/setter，具体这里我们就不具体的讲了。
 
 ### 与其他技术比较
 
@@ -84,25 +84,25 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 异：  
 	1.React依赖 虚拟Dom, 而Vue.js使用的是DOM模板（vue.js 2.0也支持了虚拟DOM，但两者是有差异的）  
 	2.Vue.js在模板中提供指令、过滤器等，可以更翻遍快捷地操作DOM
-#### 与Backbone.js的区别
+#### 与Backbone.js的区别
 定位不同，Vue.js专注于View,而Backbone除view之外，还提供Collection、model和Router。Vue.js拥有数据双向绑定，而Backbone需要手动通过事件来操作DOM。
 
 ## Vue.js核心特点
 * MVVM模式
 * 数据驱动 数据双向绑定
-* 模块化 组件化
+* 模块化 组件化
 
 ## 基础语法
 了解一门语言或者学习一门新技术，编写Hello World示例是我们的必经之路。 
-首先我们在一个html文件中，直接通过script标签引入Vue.js，然后在页面里写Vue.js代码的方式来演示Vue.js的基础语法。 
+首先我们在一个html文件中，直接通过script标签引入Vue.js，然后在页面里写Vue.js代码的方式来演示Vue.js的基础语法。 
 
 ![helloWorld](images/helloWorld.jpg)
 
 使用Vue的过程就是定义MVVM各个组成部分的过程的过程，即定义模板（View），定义数据（Model）和定义Vue实例（ViewModel），ViewModel选项对象的el属性执行View，data指向Model。
 
-这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
+这里我们看到的只是一个最简易的Vue使用，它还有其他的基础语法，它们包括数据绑定、指令、计算属性、过滤器、样式&过渡等，下面我们来一一介绍。
 ### 数据绑定
- Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外，Vue.js中还可使用指令和表达式，下面我们看看这个栗子。
+ Vue.js数据的绑定有多种，上面helloWorld中我们看到了类似Mustach的插值（使用{{}}），除此之外，Vue.js中还可使用指令和表达式，下面我们看看这个栗子。
  ![数据绑定](images/dataBinding.jpg)
 
  运行页面结果：
@@ -110,10 +110,10 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
  ![数据绑定运行页面结果](images/dataBindingResult.jpg)
 
 ### 指令
-数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
+数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
 
 ![内置指令](images/directive.jpg)
-* v-show / v-if   是否展示 (区别：v-show不展示时，是有Dom占位的，而v-if直接没有不显示的节点。)
+* v-show / v-if   是否展示 (区别：v-show不展示时，是有Dom占位的，而v-if直接没有不显示的节点。)
 * v-text / v-html  显示普通文/HTML内容文本
 * v-model  表单绑定
 * v-bind  元素属性
@@ -178,7 +178,7 @@ debounce —— 延迟处理器一定的时间执行
 
 ![defineFilter](images/defineFilter.jpg)
 
-从上图栗子可以看到自定义一个过滤器Vue.filter('', Fn),过滤器的本质是函数，起作用在于用户输入数据后，它能够进行处理，并返回一个数据结果。过滤器使用管道符（|）进行连接。
+从上图栗子可以看到自定义一个过滤器Vue.filter('', Fn),过滤器的本质是函数，起作用在于用户输入数据后，它能够进行处理，并返回一个数据结果。过滤器使用管道符（|）进行连接。
 ### 样式&过渡
 这块不知道咋讲，直接上栗子吧！
 ![class](images/class.jpg)
@@ -219,7 +219,7 @@ Vue.js将普通的对象的属性通过Object.defineProperty转换为ES5特性�
 
 ![todoList组件运行结果](images/componentResult.jpg)
 
-从上面的栗子我们可以看到，注册组件：
+从上面的栗子我们可以看到，注册组件：
 Vue.component('xxx-xxx',options);
 组件选项options包括:
 * 模板（template）
@@ -252,8 +252,8 @@ Vue.component('xxx-xxx',options);
 1.学习成本不高，API简单让业务代码更好的组织    
     
     template + 数据双向绑定 + 组件  
-2.解决了前端交互复杂带来的性能问题  
+2.解决了前端交互复杂带来的性能问题
 3.完整的开发生态链
 从脚手架、构建、插件化、组件化，到编辑器工具、浏览器插件等，基本覆盖了从开发到测试的多个环节。
 ## 总结
-以上我们从介绍了Vue.js的发展史，Vue.js与其他技术比较，基本语法，基本特征MVVM模型、数据双向绑定、模块化和组件化，以及构建一个强大的前端项目需要的技术栈。我们基本掌握了Vue.js的基础知识，了解了其基本特征，有兴趣的同学可以进一步的学习和探寻。
+以上我们从介绍了Vue.js的发展史，Vue.js与其他技术比较，基本语法，基本特征MVVM模型、数据双向绑定、模块化和组件化，以及构建一个强大的前端项目需要的技术栈。我们基本掌握了Vue.js的基础知识，了解了其基本特征，有兴趣的同学可以进一步的学习和探寻。
