@@ -113,7 +113,7 @@ AngularJS双向绑定是对数据进行脏检查，所以watcher越多越慢。�
 数据绑定中我们初步认识到了指令，那么Vue.js中的指令究竟是什么呢？他和AngularJS中的指令有什么区别?
 
 ![内置指令](images/directive.jpg)
-* v-show / v-if   是否展示 (区别：v-show不展示时，是有Dom占位的，而v-if直接没有不显示的节点。)
+* v-show / v-if   是否展示 (区别：v-show不展示时，是有Dom占位的，而v-if直接没有不显示的节点。)
 * v-text / v-html  显示普通文/HTML内容文本
 * v-model  表单绑定
 * v-bind  元素属性
